@@ -1,42 +1,45 @@
-let selectionArray = ['rock', 'paper', 'scissors'];
+let playScore = 0;
+let compScore = 0;
+
+function game() {
+    /* Looping 5 times -- playing round 5 times */
+for(let i = 0; i < 5; i++){
+    
+/* Creating random selection for computer */
+let selectionArray = ['Rock', 'Paper', 'Scissors'];
 let randomNumber = Math.floor(Math.random()*selectionArray.length);
 
-let playerScore = 0;
-let computerScore = 0;
+/* Setting player & computer selection variables */
 
+const playerSelection = prompt('Choose your weapon').toLowerCase();
+const computerSelection = computerPlay().toLowerCase();
+
+/* Computer selection function */
 function computerPlay() {
     if (randomNumber === 0) {
-        return 'rock'
+        return 'Rock'
     } else if (randomNumber === 1) {
-        return 'paper'
+        return 'Paper'
     } else {
-        return 'scissors'
+        return 'Scissors'
     }
 }
-computerPlay();
 
+/* Playing round function */
+function playRound(player, computer) {
 
-
-let playerSelection = 'rock';
-let computerSelection = computerPlay();
-
-function playRound(a, b) {
-    console.log(b)
-    if (a === 'rock' && b === 'scissors') {
-        playerScore++
-        return 'You win'
-    } 
-}
-
-console.log(playRound(playerSelection, computerSelection));
-
-function game(){
-    
-    for(let i = 0; i < 5; i++){
-        playRound(playerSelection, computerSelection);
-        console.log(`Player score is ${playerScore}`)
+    if(player === "rock" && computer === "scissors") {
+        playScore += 1
+        return `Rock beats Paper! You Win!`
+    } else {
+        compScore += 1
+        return `You Lose!`
     }
-    
 }
 
+
+        console.log(playRound(playerSelection, computerSelection));
+        console.log(`${playScore} ${compScore}`)
+    }
+}
 game();
