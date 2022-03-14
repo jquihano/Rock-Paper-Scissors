@@ -41,7 +41,15 @@ function playRound(player, computer) {
 
 
         console.log(playRound(playerSelection, computerSelection));
-        console.log(`${playScore} ${compScore}`)
+        console.log(`Player Score: ${playScore} Computer Score:${compScore}`);
+       
     } while (playScore < 5 && compScore < 5);
-}
+    if (playScore === 5) {
+            alert(`You Win!`)
+        } else if (compScore === 5) {
+            alert(`You Lose!`)
+        }
+} 
+
+
 game();
