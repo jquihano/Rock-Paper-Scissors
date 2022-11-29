@@ -1,6 +1,14 @@
 let playScore = 0;
 let compScore = 0;
 
+document.querySelector('#rock').addEventListener('click', playRound)
+document.querySelector('#paper').addEventListener('click', playRound)
+document.querySelector('#scissors').addEventListener('click', playRound)
+
+function playRound(){
+    alert('clicked')
+}
+
 function game() {
     /* Looping 5 times -- playing round 5 times */
 do{
@@ -11,7 +19,7 @@ let randomNumber = Math.floor(Math.random()*selectionArray.length);
 
 /* Setting player & computer selection variables */
 
-const playerSelection = prompt('Choose your weapon').toLowerCase();
+//const playerSelection = prompt('Choose your weapon').toLowerCase();
 const computerSelection = computerPlay().toLowerCase();
 
 /* Computer selection function */
