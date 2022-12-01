@@ -8,10 +8,6 @@ document.querySelector('#scissors').addEventListener('click', playRound)
 function playRound(){
     alert('clicked')
 }
-
-function game() {
-    /* Looping 5 times -- playing round 5 times */
-do{
     
 /* Creating random selection for computer */
 let selectionArray = ['Rock', 'Paper', 'Scissors'];
@@ -51,13 +47,13 @@ function playRound(player, computer) {
         console.log(playRound(playerSelection, computerSelection));
         console.log(`Player Score: ${playScore} Computer Score:${compScore}`);
        
-    } while (playScore < 5 && compScore < 5);
+ (playScore < 5 && compScore < 5);
     if (playScore === 5) {
             alert(`You Win!`)
         } else if (compScore === 5) {
             alert(`You Lose!`)
         }
-} 
+
 
 
 game();
