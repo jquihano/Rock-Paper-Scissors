@@ -1,63 +1,67 @@
-let playScore = 0;
-let compScore = 0;
-
-document.querySelector('#rock').addEventListener('click', playRound)
-document.querySelector('#paper').addEventListener('click', playRound)
-document.querySelector('#scissors').addEventListener('click', playRound)
-
-function playRound(){
-    alert('clicked')
-}
-
-function game() {
-    /* Looping 5 times -- playing round 5 times */
-do{
-    
-/* Creating random selection for computer */
-let selectionArray = ['Rock', 'Paper', 'Scissors'];
-let randomNumber = Math.floor(Math.random()*selectionArray.length);
-
-/* Setting player & computer selection variables */
-
-//const playerSelection = prompt('Choose your weapon').toLowerCase();
-const computerSelection = computerPlay().toLowerCase();
+let playScore = 0
+let compScore = 0
+const buttons = document.querySelectorAll('.input')
+let result = ""
+let champ = ''
 
 /* Computer selection function */
+/* Creating random selection for computer */
 function computerPlay() {
-    if (randomNumber === 0) {
-        return 'Rock'
-    } else if (randomNumber === 1) {
-        return 'Paper'
-    } else {
-        return 'Scissors'
-    }
+    let selectionArray = ['Rock', 'Paper', 'Scissors'];
+    return  selectionArray[Math.floor(Math.random()*selectionArray.length)];
 }
 
+function disableButton() {
+    buttons.disabled = 'true';
+}
+
+function winner(){
+    alert(champ)
+    alert('click to play again')
+    playScore = 0;
+    compScore = 0;
+}
+
+
 /* Playing round function */
-function playRound(player, computer) {
+function playRound(player) {
+    const computer = computerPlay().toLowerCase();
+    if(playScore >= 5) {
+        winner()
+        champ = 'Player wins!'
+        return result
+        
+    } else if(compScore >= 5){
+        champ = 'Comp Wins..'
+        winner()
+        return result
+    }
 
     if(player === "rock" && computer === "scissors" || player === "paper" && computer === "rock" || player === "scissors" && computer === "paper" ) {
         playScore += 1
-        return `${player} beats ${computer}! You Win!`
+        result =  `${player} beats ${computer}! You Win!`
     } else if(player === "rock" && computer === "paper" || player === "paper" && computer === "scissors"  || player === "scissors" && computer === "rock" ){
         compScore += 1
-        return `${player} doesn't beat ${computer}! You Lose!`
+        result = `${player} doesn't beat ${computer}! You Lose!`
+        
     } else {
-        return `It's a tie!`
+        result = `It's a tie!`
     }
+
+document.querySelector('.display').innerHTML = result
+document.querySelector('.compScore').innerHTML = compScore
+document.querySelector('.playerScore').innerHTML = playScore
+
+return result
+
 }
 
 
-        console.log(playRound(playerSelection, computerSelection));
-        console.log(`Player Score: ${playScore} Computer Score:${compScore}`);
-       
-    } while (playScore < 5 && compScore < 5);
-    if (playScore === 5) {
-            alert(`You Win!`)
-        } else if (compScore === 5) {
-            alert(`You Lose!`)
-        }
-} 
 
-
-game();
+//console.log(playRound(playerSelection, computerSelection));
+        
+ buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        playRound(button.value)
+        })
+    })
